@@ -1,4 +1,4 @@
-# CityPulse — Multi-Agent City Intelligence Platform
+# CityPulse - Multi-Agent City Intelligence Platform
 
 **Multi-agent AI platform delivering real-time intelligence about Norwegian cities**
 
@@ -25,10 +25,10 @@ An orchestrator agent interprets natural language queries, delegates to speciali
 - **HTTP Client:** Axios
 
 ### Data Sources
-- **Yr.no** — Real-time weather for all Norwegian cities
-- **Ticketmaster Discovery API** — Upcoming events
-- **NRK RSS** — Local news by region
-- **SSB API** — Historical housing price index (Statistics Norway)
+- **Yr.no** - Real-time weather for all Norwegian cities
+- **Ticketmaster Discovery API** - Upcoming events
+- **NRK RSS** - Local news by region
+- **SSB API** - Historical housing price index (Statistics Norway)
 
 ---
 
@@ -107,14 +107,14 @@ Frontend runs at: http://localhost:3000
 
 ## 🗺️ Features
 
-- **Interactive Norway map** — Click any major city or search for any Norwegian town via Nominatim geocoding
-- **Live agent reasoning feed** — Watch agents activate and work in real time with animated trace
-- **Natural language queries** — Ask anything about a city in Norwegian
-- **Web search fallback** — Claude searches the web when local agents lack data
-- **Smart model selection** — Haiku for simple queries, Sonnet when web search is needed
-- **Prompt injection protection** — Input sanitization on all user queries
-- **All Norwegian cities supported** — Geocoding via Nominatim for any location
-- **Quick actions** — One-click overview, weather, events, news and property queries
+- **Interactive Norway map** - Click any major city or search for any Norwegian town via Nominatim geocoding
+- **Live agent reasoning feed** - Watch agents activate and work in real time with animated trace
+- **Natural language queries** - Ask anything about a city in Norwegian
+- **Web search fallback** - Claude searches the web when local agents lack data
+- **Smart model selection** - Haiku for simple queries, Sonnet when web search is needed
+- **Prompt injection protection** - Input sanitization on all user queries
+- **All Norwegian cities supported** - Geocoding via Nominatim for any location
+- **Quick actions** - One-click overview, weather, events, news and property queries
 
 ---
 

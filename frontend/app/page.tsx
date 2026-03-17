@@ -8,30 +8,30 @@ import ReactMarkdown from 'react-markdown'
 const MapComponent = dynamic(() => import('./MapComponent'), { ssr: false })
 
 const CITY_META: Record<string, { tagline: string, gradient: string }> = {
-  Oslo:         { tagline: 'Hovedstaden',      gradient: 'from-blue-950 via-slate-900 to-gray-950' },
-  Bergen:       { tagline: 'Fjordenes by',     gradient: 'from-cyan-950 via-slate-900 to-gray-950' },
-  Trondheim:    { tagline: 'Midtens rike',     gradient: 'from-purple-950 via-slate-900 to-gray-950' },
-  Stavanger:    { tagline: 'Oljehovedstaden',  gradient: 'from-orange-950 via-slate-900 to-gray-950' },
+  Oslo:         { tagline: 'Hovedstaden',       gradient: 'from-blue-950 via-slate-900 to-gray-950' },
+  Bergen:       { tagline: 'Fjordenes by',      gradient: 'from-cyan-950 via-slate-900 to-gray-950' },
+  Trondheim:    { tagline: 'Midtens rike',      gradient: 'from-purple-950 via-slate-900 to-gray-950' },
+  Stavanger:    { tagline: 'Oljehovedstaden',   gradient: 'from-orange-950 via-slate-900 to-gray-950' },
   Tromsø:       { tagline: 'Nord-Norges hjerte',gradient: 'from-indigo-950 via-slate-900 to-gray-950' },
-  Bodø:         { tagline: 'Arktisk by',       gradient: 'from-sky-950 via-slate-900 to-gray-950' },
-  Kristiansand: { tagline: 'Sørlandet',        gradient: 'from-rose-950 via-slate-900 to-gray-950' },
-  Ålesund:      { tagline: 'Jugendstilbyen',   gradient: 'from-teal-950 via-slate-900 to-gray-950' },
-  Drammen:      { tagline: 'Byens puls',       gradient: 'from-lime-950 via-slate-900 to-gray-950' },
-  Fredrikstad:  { tagline: 'Østfolds perle',   gradient: 'from-emerald-950 via-slate-900 to-gray-950' },
-  Moss:         { tagline: 'Mossesundet',      gradient: 'from-violet-950 via-slate-900 to-gray-950' },
-  Sarpsborg:    { tagline: 'Historisk by',     gradient: 'from-amber-950 via-slate-900 to-gray-950' },
-  Halden:       { tagline: 'Grensebyen',       gradient: 'from-red-950 via-slate-900 to-gray-950' },
-  Hamar:        { tagline: 'Innlandets by',    gradient: 'from-green-950 via-slate-900 to-gray-950' },
-  Lillehammer:  { tagline: 'OL-byen',          gradient: 'from-yellow-950 via-slate-900 to-gray-950' },
-  Tønsberg:     { tagline: 'Norges eldste by', gradient: 'from-pink-950 via-slate-900 to-gray-950' },
-  Arendal:      { tagline: 'Aust-Agder',       gradient: 'from-fuchsia-950 via-slate-900 to-gray-950' },
-  Harstad:      { tagline: 'Troms og Ofoten',  gradient: 'from-cyan-950 via-slate-900 to-gray-950' },
+  Bodø:         { tagline: 'Arktisk by',        gradient: 'from-sky-950 via-slate-900 to-gray-950' },
+  Kristiansand: { tagline: 'Sørlandet',         gradient: 'from-rose-950 via-slate-900 to-gray-950' },
+  Ålesund:      { tagline: 'Jugendstilbyen',    gradient: 'from-teal-950 via-slate-900 to-gray-950' },
+  Drammen:      { tagline: 'Byens puls',        gradient: 'from-lime-950 via-slate-900 to-gray-950' },
+  Fredrikstad:  { tagline: 'Østfolds perle',    gradient: 'from-emerald-950 via-slate-900 to-gray-950' },
+  Moss:         { tagline: 'Mossesundet',       gradient: 'from-violet-950 via-slate-900 to-gray-950' },
+  Sarpsborg:    { tagline: 'Historisk by',      gradient: 'from-amber-950 via-slate-900 to-gray-950' },
+  Halden:       { tagline: 'Grensebyen',        gradient: 'from-red-950 via-slate-900 to-gray-950' },
+  Hamar:        { tagline: 'Innlandets by',     gradient: 'from-green-950 via-slate-900 to-gray-950' },
+  Lillehammer:  { tagline: 'OL-byen',           gradient: 'from-yellow-950 via-slate-900 to-gray-950' },
+  Tønsberg:     { tagline: 'Norges eldste by',  gradient: 'from-pink-950 via-slate-900 to-gray-950' },
+  Arendal:      { tagline: 'Aust-Agder',        gradient: 'from-fuchsia-950 via-slate-900 to-gray-950' },
+  Harstad:      { tagline: 'Troms og Ofoten',   gradient: 'from-cyan-950 via-slate-900 to-gray-950' },
   Haugesund:    { tagline: 'Vestlandets perle',  gradient: 'from-orange-950 via-slate-900 to-gray-950' },
   Skien:        { tagline: 'Ibsens hjemby',      gradient: 'from-stone-950 via-slate-900 to-gray-950' },
   Sogndal:      { tagline: 'Fjordlandet',        gradient: 'from-emerald-950 via-slate-900 to-gray-950' },
   'Mo i Rana':  { tagline: 'Porten til Nord',    gradient: 'from-slate-900 via-blue-950 to-gray-950' },
   Kautokeino:   { tagline: 'Samenes hjerte',     gradient: 'from-purple-950 via-slate-900 to-gray-950' },
-  default:      { tagline: 'Norge',            gradient: 'from-slate-900 via-slate-900 to-gray-950' },
+  default:      { tagline: 'Norge',             gradient: 'from-slate-900 via-slate-900 to-gray-950' },
 }
 
 function getWeatherIcon(temp: number): string {
@@ -65,6 +65,7 @@ export default function Home() {
     setResult(null)
     setSummary('')
     setTrace([])
+    setVisibleTrace([])
   }
 
   async function ask(q: string) {
@@ -112,19 +113,19 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-emerald-400 mb-2">Multi-agent by-intelligens</p>
-              <h1 className="text-6xl font-extrabold tracking-tight" style={{ fontFamily: "'Syne', sans-serif" }}>
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight" style={{ fontFamily: "'Syne', sans-serif" }}>
                 City<span className="text-emerald-400">Pulse</span>
               </h1>
             </div>
-            <div className="text-right">
+            <div className="text-right hidden md:block">
               <p className="text-3xl font-bold" style={{ fontFamily: "'Syne', sans-serif" }}>{city}</p>
               <p className="text-sm text-gray-400">{meta.tagline}</p>
             </div>
           </div>
 
-          {/* Norge-kart */}
           <div className="rounded-2xl overflow-hidden mb-8" style={{ border: '1px solid rgba(255,255,255,0.07)' }}>
             <MapComponent
+              key={`fullmap-${city}`}
               coords={coords}
               city={city}
               onCitySelect={handleCitySelect}
@@ -303,7 +304,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* Om-seksjon */}
         <div className="card rounded-2xl p-8 mt-8">
           <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Om CityPulse</p>
           <div className="grid md:grid-cols-2 gap-8">
@@ -317,14 +317,17 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-3" style={{ fontFamily: "'Syne', sans-serif" }}>Agentene</h3>
               <div className="space-y-2">
                 {[
-                  { name: 'WeatherAgent', desc: 'Yr.no – sanntidsvær for alle norske byer' },
-                  { name: 'EventAgent',   desc: 'Ticketmaster – kommende arrangementer' },
-                  { name: 'NewsAgent',    desc: 'NRK – lokale nyheter per region' },
-                  { name: 'PropertyAgent',desc: 'SSB – historisk boligprisindeks' },
+                  { name: 'WeatherAgent',  desc: 'Yr.no – sanntidsvær for alle norske byer' },
+                  { name: 'EventAgent',    desc: 'Ticketmaster – kommende arrangementer' },
+                  { name: 'NewsAgent',     desc: 'NRK – lokale nyheter per region' },
+                  { name: 'PropertyAgent', desc: 'SSB – historisk boligprisindeks' },
                 ].map(a => (
                   <div key={a.name} className="flex items-start gap-2 text-sm">
                     <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-1.5 shrink-0" />
-                    <span><span className="text-emerald-400 font-medium">{a.name}</span> <span className="text-gray-500">– {a.desc}</span></span>
+                    <span>
+                      <span className="text-emerald-400 font-medium">{a.name}</span>
+                      <span className="text-gray-500"> – {a.desc}</span>
+                    </span>
                   </div>
                 ))}
               </div>
@@ -332,7 +335,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="text-center py-8 mt-4">
           <p className="text-xs text-gray-600">
             Utviklet av{' '}

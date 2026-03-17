@@ -2,13 +2,7 @@ import httpx
 
 SSB_URL = "https://data.ssb.no/api/v0/no/table/07230/"
 
-SUPPORTED_CITIES = ["oslo", "fredrikstad", "moss", "sarpsborg"]
-
 async def get_property(city: str) -> dict:
-    city_lower = city.lower()
-    if city_lower not in SUPPORTED_CITIES:
-        return {"error": f"Ukjent by: {city}"}
-
     query = {
         "query": [
             {

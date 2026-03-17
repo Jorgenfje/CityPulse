@@ -71,6 +71,7 @@ def synthesize(city: str, question: str, data: dict) -> str:
         "Ikke bruk andre markdown-elementer som headers eller bold. "
         "Skriv kun ren løpende tekst uten formatering. "
         "Når du nevner arrangementer eller nyheter, inkluder alltid dato og kilde/nettsted hvis tilgjengelig."
+        "For boligprisspørsmål: bruk kun de lokale SSB-dataene som er oppgitt. Ikke søk på nettet etter boligpriser. "
     )
 
     user_message = (
@@ -89,8 +90,14 @@ def synthesize(city: str, question: str, data: dict) -> str:
         f"- Hvis spørsmålet er 'oversikt', gi et helhetlig sammendrag av byen med vær, nyheter og arrangementer\n"
     )
 
+    has_events = bool(
+        data.get("events") and
+        data["events"].get("events") and
+        len(data["events"]["events"]) > 0
+    )
+    
     message = client.messages.create(
-        model="claude-sonnet-4-6",
+        model="claude-sonnet-4-6" if not has_events else "claude-haiku-4-5-20251001",
         max_tokens=1024,
         system=system,
         tools=tools,
@@ -118,7 +125,7 @@ async def orchestrate(city: str, question: str) -> dict:
     question_lower = clean.lower()
 
     run_weather  = any(w in question_lower for w in ["vær", "temperatur", "regn", "sol", "klima", "weather"])
-    run_events   = any(w in question_lower for w in ["skjer", "arrangement", "konsert", "event", "helg", "barn", "finne", "kamp"])
+    run_events = any(w in question_lower for w in ["skjer", "arrangement", "konsert", "event", "helg", "barn", "finne", "kamp", "fremover", "oversikt"])
     run_news     = any(w in question_lower for w in ["nyheter", "nyhet", "siste", "aktuelt", "news"])
     run_property = any(w in question_lower for w in ["bolig", "pris", "kjøpe", "leilighet", "hus", "property"])
 

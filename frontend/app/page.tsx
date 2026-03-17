@@ -244,7 +244,7 @@ export default function Home() {
                       <a key={i} href={e.link} target="_blank" className="block group">
                         <div className="flex items-start gap-3">
                           <div className="w-10 text-center shrink-0">
-                            <div className="text-xs text-emerald-400 font-medium">{e.date?.slice(5)}</div>
+                            <div className="text-xs text-emerald-400 font-medium">{e.date?.slice(5).split('-').reverse().join('.')}</div>
                           </div>
                           <div>
                             <p className="text-sm text-white group-hover:text-emerald-400 transition-colors font-medium leading-snug">{e.title}</p>

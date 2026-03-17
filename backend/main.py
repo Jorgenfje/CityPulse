@@ -10,6 +10,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "https://citypulse-frontend-production.up.railway.app",
+        "https://citypulse.fjellstadteknologi.no",
     ],
     allow_credentials=True,
     allow_methods=["*"],

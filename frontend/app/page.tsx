@@ -75,7 +75,7 @@ export default function Home() {
     setResult(null)
     setSummary('')
     try {
-      const res = await axios.post('http://127.0.0.1:8000/ask', { city, question: q })
+      const res = await axios.post('https://citypulse-production-0124.up.railway.app/ask', { city, question: q })
       setTrace(res.data.trace)
       setResult(res.data)
       setSummary(res.data.summary)
